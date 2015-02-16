@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <style type="text/css" media="screen">
+        #firework_canvas{
+            background-color:#000;
+            position:absolute;
+        }
+        
+    </style>
+</head>
+<body>
+    <canvas id="firework_canvas"></canvas>
+</body>
+<script type="text/javascript" charset="utf-8" src="Particle.js"></script>
+<script type="text/javascript" charset="utf-8" src="Firework.js"></script>
+<script type="text/javascript" charset="utf-8" src="AnimatedCanvas.js"></script>
+<script type="text/javascript" charset="utf-8">
+    function id(el){
+        return document.getElementById(el);
+    }
+    var ACan = new AnimatedCanvas("firework_canvas");
+
+    document.onkeydown = function(){
+            var f = new Firework();
+    }
+
+</script>
+</html>
