@@ -26,7 +26,7 @@ function Firework(){
         self.p.color.b = self.p.color.b-100;
         //ACan.flashCol = self.p.color.a = .2;
         ACan.flashCol = self.p.color.ret();
-        ACan.flash();
+        //ACan.flash();
         self.randCount = Math.floor(Math.random()*20)*-1; 
         self.randCountY = Math.floor(Math.random()*20)*-1; 
         for(var piX = self.randCount; piX <= Math.abs(self.randCount); piX++){
