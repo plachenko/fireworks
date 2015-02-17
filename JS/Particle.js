@@ -13,6 +13,7 @@ function Particle(){
     this.damp=0;
     this.dampMod=0;
     this.stopped = false;
+    this.coord = new Array();
     this.color = {
         'r': 255,
         'g': 255,
@@ -33,12 +34,17 @@ function Particle(){
         clearInterval(self.update);
     }
 
+    this.totalArr = new Array();
+
     this.move = function(){
         if(self.duration <= self.end-1){
             self.damp+=self.dampMod;
             self.duration += 1;
             self.y += self.forceY+self.damp; 
             self.x += self.forceX; 
+            if(self.coord.length < 5){
+                self.coord.push([self.x, self.y]);
+            }
         }else{
             self.stop();
         }

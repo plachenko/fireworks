@@ -32,6 +32,10 @@ function AnimatedCanvas(el){
             for(var i = 0; i<= self.objArr.length-1; i++){
                 if(self.objArr[i]){
                     if(!self.objArr[i].stopped){
+                        for(var j = 0; j <= self.objArr[i].coord.length-1; j++){
+                            self.ctx.fillStyle = "rgba(255,255,255,.2)";
+                            self.ctx.fillRect(self.objArr[i].coord[j][0],self.objArr[i].coord[j][1], self.objArr[i].w,self.objArr[i].h);
+                        }
                         self.ctx.fillStyle = self.objArr[i].color.ret();
                         self.ctx.fillRect(self.objArr[i].x,self.objArr[i].y, self.objArr[i].w,self.objArr[i].h);
                     }else{
