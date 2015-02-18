@@ -36,13 +36,14 @@ function Particle(){
     }
 
     this.totalArr = new Array();
+    this.slow = 1;
 
     this.move = function(){
         if(self.duration <= self.end-1){
             self.damp+=self.dampMod;
             self.duration += 1;
-            self.y += self.forceY+self.damp; 
-            self.x += self.forceX; 
+            self.y += ((self.forceY-1)+self.damp)/self.slow; 
+            self.x += self.forceX/self.slow; 
             if(self.coord.length < self.trailEnd){
                 self.coord.push([self.x, self.y]);
             }

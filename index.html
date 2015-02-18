@@ -7,12 +7,29 @@
         #firework_canvas{
             background-color:#000;
             position:absolute;
+            }
+        #mouseDiv{
+            position: absolute;
+            width: 800px;
+            height: 300px;
+            z-index: 9999;
         }
+        #touchCanvas{
+            z-index: 9998;
+            position: absolute;
+            }
         
     </style>
 </head>
 <body>
-    <canvas id="firework_canvas"></canvas>
+    <div>Score: <span id="score"></span></div>
+    <div>Time: <span id="time"></span></div>
+    <div id="container">
+        <div id="mouseDiv"></div>
+        <canvas id="touchCanvas"></canvas>
+        <canvas id="firework_canvas"></canvas>
+    </div>
+
 </body>
 <script type="text/javascript" charset="utf-8" src="JS/Particle.js"></script>
 <script type="text/javascript" charset="utf-8" src="JS/Firework.js"></script>
@@ -23,9 +40,70 @@
     }
     var ACan = new AnimatedCanvas("firework_canvas");
 
-    document.onkeydown = function(){
-            var f = new Firework();
+    document.onkeydown = function(e){
+        switch(e.which){
+            case 32:
+                console.log('slowmo');
+                for(var i = 0; i<=ACan.objArr.length-1; i++){
+                    if(ACan.objArr[i]){
+                        ACan.objArr[i].slow = 22;
+                    }
+                }
+                break;
+        }
     }
+
+    var touchCanvas = id('touchCanvas'); 
+        touchCanvas.width = ACan.width;
+        touchCanvas.height = ACan.height;
+    var tcx = touchCanvas.getContext('2d');
+
+    var mouseArr = new Array();
+    var md = false;
+
+    id('mouseDiv').onmouseup = function(e){
+        mouseArr = new Array();
+        md = false;
+        tcx.clearRect(0,0,touchCanvas.width, touchCanvas.height);
+    }
+    id('mouseDiv').onmousedown = function(e){
+        md = true;
+        tcx.strokeStyle = "#F00";
+        tcx.beginPath();
+        tcx.moveTo(e.offsetX, e.offsetY);
+
+        e.preventDefault();
+    }
+
+    var s = null;
+    var j = 0;
+    function scan(){
+        mouseArr.forEach(function(e){
+                
+                console.log(e);
+        });
+    }
+    id('mouseDiv').onmousemove = function(e){
+        if(md){
+            mouseArr.push([e.offsetX, e.offsetY]);
+            //scan();
+            if(j <= 10){
+                tcx.lineTo(mouseArr[j][0],mouseArr[j][1]);
+                tcx.stroke();
+                j++;
+            }  
+        }else{
+            j = 0;
+        }
+    }
+
+    var time = 100;
+
+    s = setInterval(function(){
+        var f = new Firework();
+        time--;
+        id('time').html = time;
+    }, 300);
 
 </script>
 </html>
