@@ -18,7 +18,7 @@ function AnimatedCanvas(el){
         self.canvas.style.backgroundColor = self.flashCol;
         setTimeout(function(){
             self.canvas.style.backgroundColor = "#000";
-        },100);
+        },150);
     }
 
     this.update = null;

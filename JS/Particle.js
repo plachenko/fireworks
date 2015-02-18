@@ -28,6 +28,7 @@ function Particle(){
             return "rgba("+this.r+","+this.g+","+this.b+","+this.a+")";
         }
     }
+    this.trailEnd = 0;
 
     this.stop = function(){
         this.stopped = true;
@@ -42,7 +43,7 @@ function Particle(){
             self.duration += 1;
             self.y += self.forceY+self.damp; 
             self.x += self.forceX; 
-            if(self.coord.length < 5){
+            if(self.coord.length < self.trailEnd){
                 self.coord.push([self.x, self.y]);
             }
         }else{
@@ -53,3 +54,31 @@ function Particle(){
     this.update = setInterval(this.move, this.tickTime);
 }
 
+/*
+
+function Particle(){
+    var self = this;
+    this.tick = 10;
+    this.coordArray = new Array();
+    this.prop = {
+        x: 0,
+        fx: 0,
+        fy: 0,
+        y: 0,
+        w: 0,
+        h: 0,
+        color: new Color()
+    }
+
+    this.stop = function(){
+
+    }
+
+    this.move = function(){
+        self.prop.x += self.prop.fx;
+        self.prop.y += self.prop.fy;
+    }
+
+    this.update = setInterval(this.move, this.tick);
+}
+*/
