@@ -31,6 +31,7 @@
     </div>
 
 </body>
+<script type="text/javascript" charset="utf-8" src="JS/Color.js"></script>
 <script type="text/javascript" charset="utf-8" src="JS/Particle.js"></script>
 <script type="text/javascript" charset="utf-8" src="JS/Firework.js"></script>
 <script type="text/javascript" charset="utf-8" src="JS/AnimatedCanvas.js"></script>
@@ -87,6 +88,17 @@
         if(md){
             mouseArr.push([e.offsetX, e.offsetY]);
             //scan();
+            for(var i = 0; i <= ACan.objArr.length-1; i++){
+                /*
+                if(ACan.objArr[i].y <= e.offsetY+10){
+                    if(ACan.objArr[i].x <= e.offsetX+10){
+                        //console.log(ACan.objArr[i]);
+                        //f.explode();
+                        //console.log(ACan.objArr[i].x, ACan.objArr[i].y);
+                    }
+                }
+                */
+            }
             if(j <= 10){
                 tcx.lineTo(mouseArr[j][0],mouseArr[j][1]);
                 tcx.stroke();
@@ -100,10 +112,10 @@
     var time = 100;
 
     s = setInterval(function(){
-        var f = new Firework();
+            var f = new Firework();
         time--;
         id('time').html = time;
-    }, 300);
+    }, 100);
 
 </script>
 </html>

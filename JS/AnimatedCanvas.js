@@ -1,7 +1,7 @@
 function AnimatedCanvas(el){
     var self = this;
     this.width = 800;
-    this.height = 300;
+    this.height = 500;
 
     var can = id(el);
         can.height = this.height;
@@ -23,7 +23,7 @@ function AnimatedCanvas(el){
         setTimeout(function(){
             self.canvas.style.backgroundColor = "#000";
             self.flashColNum = 0;
-        },150);
+        },100);
     }
 
     this.update = null;
@@ -32,18 +32,29 @@ function AnimatedCanvas(el){
         self.draw();
     }
 
+    var x, damp, y = 0;
+
     this.draw = function(){
         if(self.objArr.length){
             for(var i = 0; i<= self.objArr.length-1; i++){
                 if(self.objArr[i]){
                     if(!self.objArr[i].stopped){
                         for(var j = 0; j <= self.objArr[i].coord.length-1; j++){
-                            self.objArr[i].color.a = .7;
+                            self.objArr[i].color.a = .3;
                             self.ctx.fillStyle = self.objArr[i].color.ret();
                             self.ctx.fillRect(self.objArr[i].coord[j][0],self.objArr[i].coord[j][1], self.objArr[i].w,self.objArr[i].h);
                         }
                         self.ctx.fillStyle = self.objArr[i].color.ret();
                         self.ctx.fillRect(self.objArr[i].x,self.objArr[i].y, self.objArr[i].w,self.objArr[i].h);
+                        /*
+                        for(var k = 0; k <= 1; k++){
+                            damp = self.objArr[i].damp;
+                            x = self.objArr[i].x+= damp;
+                            y = self.objArr[i].y+= damp;
+                            self.ctx.fillStyle = "#FFF";
+                            self.ctx.fillRect(x, self.objArr[i].y, self.objArr[i].w,self.objArr[i].h);
+                        }
+                        */
                     }else{
                         self.objArr[i] = null;
                     }

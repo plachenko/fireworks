@@ -14,12 +14,12 @@ function Firework(){
         }else if(this.position == 2){
             this.p.x = 0;
             this.p.y = Math.floor(Math.random()*ACan.height)+10;
-            this.p.forceY = Math.floor(Math.random()*4)-2;
+            this.p.forceY = Math.floor(Math.random()*8)-2;
             this.p.forceX = 7;
         }else{
             this.p.x = ACan.width;
             this.p.y = Math.floor(Math.random()*ACan.height)+10;
-            this.p.forceY = Math.floor(Math.random()*4)-2;
+            this.p.forceY = Math.floor(Math.random()*8)-2;
             this.p.forceX = -7;
         }
 
@@ -36,7 +36,7 @@ function Firework(){
     ACan.objArr.push(this.p); 
 
     this.move = function(){
-        if(self.p.y >= ACan.height-self.p.h){
+        if(self.p.y >= ACan.height-self.p.h ||  self.p.x >= ACan.width+self.p.w || self.p.x <= 0 - self.p.w){
             self.explode();
             clearInterval(s);
             s = null;
@@ -76,7 +76,7 @@ function Firework(){
                     p.y = self.p.y;
                     p.x = self.p.x;
                     //p.trailEnd = Math.floor(Math.random()*10);
-                    p.trailEnd = 1;
+                    p.trailEnd = 0;
                     p.dampMod = .2;
                     p.forceX = Math.random()*piX*3;
                     p.end = 1+Math.floor(Math.random()*50);
@@ -88,6 +88,3 @@ function Firework(){
     }
     //setTimeout(this.explode, this.p.end);
 }
-
-
-

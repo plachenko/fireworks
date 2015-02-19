@@ -56,7 +56,6 @@ function Particle(){
 }
 
 /*
-
 function Particle(){
     var self = this;
     this.tick = 10;
@@ -64,11 +63,12 @@ function Particle(){
     this.prop = {
         x: 0,
         fx: 0,
-        fy: 0,
         y: 0,
+        fy: 0,
         w: 0,
         h: 0,
-        color: new Color()
+        color: new Color(),
+        dur: 0 
     }
 
     this.stop = function(){
